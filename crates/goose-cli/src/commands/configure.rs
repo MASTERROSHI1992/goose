@@ -433,7 +433,16 @@ pub fn configure_extensions_dialog() -> Result<(), Box<dyn Error>> {
                     "Tutorial",
                     "Access interactive tutorials and guides",
                 )
-                .item("jetbrains", "JetBrains", "Connect to jetbrains IDEs")
+                .item(
+                    "jetbrains",
+                    "JetBrains",
+                    "Connect to jetbrains IDEs",
+                )
+                .item(
+                    "advanced_computer_controller",
+                    "Advanced Computer Controller",
+                    "Screenshots, windows, mouse, browser control for Windows",
+                )
                 .interact()?
                 .to_string();
 

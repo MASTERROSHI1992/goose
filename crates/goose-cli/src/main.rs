@@ -1,10 +1,26 @@
 use anyhow::Result;
 use clap::{CommandFactory, Parser, Subcommand};
 
+mod commands;
+mod log_usage;
+mod logging;
+mod prompt;
+mod session;
+
+mod advanced_computer_controller;
+
+use advanced_computer_controller::{take_screenshot, list_windows, click_mouse, open_browser};
+
+use commands::agent_version::AgentCommand;
+use commands::configure::handle_configure;
+use commands::mcp::run_server;
+use commands::session::build_session;
+use commands::version::print_version;
 use console::style;
 use goose::config::Config;
 use goose_cli::commands::agent_version::AgentCommand;
 use goose_cli::commands::configure::handle_configure;
+use goose_cli::commands::info::handle_info;
 use goose_cli::commands::info::handle_info;
 use goose_cli::commands::mcp::run_server;
 use goose_cli::logging::setup_logging;
@@ -225,7 +241,8 @@ async fn main() -> Result<()> {
             println!();
             if !Config::global().exists() {
                 println!(
-                    "\n  {}: Run '{}' to setup goose for the first time",
+                    "
+  {}: Run '{}' to setup goose for the first time",
                     style("Tip").green().italic(),
                     style("goose configure").cyan()
                 );

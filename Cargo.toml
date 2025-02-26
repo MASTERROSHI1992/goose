@@ -1,5 +1,6 @@
 [workspace]
-members = ["crates/*"]
+members = ["crates/*",
+    "crates/goose/extensions/advanced_computer_controller"]
 resolver = "2"
 
 [workspace.package]
